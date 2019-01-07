@@ -232,7 +232,6 @@ export default {
       var id = this.idRole(role)
       var threshold = this.accountMod[role].threshold.original
       this.accountMod[role].weight_threshold = threshold
-      //this.$set(this.accountMod[role].threshold, 'state', 'original')
       this.accountMod[role].threshold.state = 'original'
     },
     
