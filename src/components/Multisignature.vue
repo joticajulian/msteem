@@ -2,12 +2,21 @@
   <div>
     <div class="container">
       <h1>Modify Authorities</h1>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">@</span>
+      <form>
+        <div class="form-row">
+          <div class="col-12 col-md-10">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">@</span>
+              </div>
+              <input type="text" class="form-control" placeholder="Account" v-model="inputUsername">
+            </div>
+          </div>
+          <div class="col-12 col-md-2">
+            <button class="btn btn-primary col-12" @click="load">Load</button>
+          </div>
         </div>
-        <input type="text" class="form-control" placeholder="Account" v-model="inputUsername">
-      </div>
+      </form>
       <div class="row">
         <div v-if="error" class="alert alert-danger">{{errorMsg}}</div>
         <div v-if="success" class="alert alert-success">{{successMsg}}</div>
@@ -138,22 +147,14 @@ export default {
     }
   },
   
-  created () {
-    this.debounced_getAccount = debounce(this.getAccount, 1000);
-  },
-  
-  watch: {
-    inputUsername: function () {
-      let self = this
-      this.debounced_getAccount()
-        .catch(function (error) {
-          console.log(error)
-          self.showError(error.message)
-        })
-    }
-  },
-  
   methods: {
+    load () {        
+      this.getAccount()
+      .catch(function(error) {
+        console.log(error)
+      })
+    },
+    
     async getAccount () {
       var client = new Client(Config.RPC_NODE.url)
       var inputUsername = this.inputUsername
