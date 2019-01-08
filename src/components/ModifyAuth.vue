@@ -270,7 +270,7 @@ export default {
         var typeAuths = ['key_auths','account_auths'] 
         for(var ida in typeAuths){
           var typeAuth = typeAuths[ida]
-          console.log(JSON.stringify(this.accountMod[role][typeAuth]))
+          
           for(var i in this.accountMod[role][typeAuth]){
             
             // get key from accountMod
@@ -300,8 +300,6 @@ export default {
         if(this.accountMod[role].threshold.state === 'modified') {
           hasModifications = true
         }
-        
-        console.log(JSON.stringify(auths[role]))
         
         // Only include modifications in the Operation
         if(hasModifications) op[1][role] = auths[role]

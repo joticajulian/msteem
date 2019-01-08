@@ -3,7 +3,7 @@
     <div class="container">    
       <form>
         <h1>Generate Keys</h1>
-        <h3>From master password</h3>
+        <h3 class="mt-4">From master password</h3>
         <form>
           <div class="form-group row">
             <label for="username" class="col-sm-2 col-form-label">Username</label>
@@ -18,18 +18,17 @@
             </div>
           </div>
         </form>
-        <div v-if="showKeys1">
-          <div v-for="(value, role) in keys1">
-            <h4 class="row mt-5 pl-3 bg-dark text-white">{{role}}</h4>
-            <div class="row monospace">Public:  {{value.public}}</div>
-            <div class="row monospace">Private: {{value.private}}</div>
+        <div v-if="showKeys1" class="row">
+          <div v-for="(value, role) in keys1" class="col-12">
+            <h4 class="mt-3">{{role}}</h4>
+            <div class="monospace">Public: {{value.public}}</div>
+            <div class="monospace">Private: {{value.private}}</div>
           </div>
         </div>
         <div class="row mt-3">
-          <div v-if="success1" class="alert alert-success col-12">{{successMsg1}}</div>
           <div v-if="error1" class="alert alert-danger col-12">{{errorMsg1}}</div>
         </div>
-        <h3>From private key</h3>
+        <h3 class="mt-4">From private key</h3>
         <form>
           <div class="form-group">
             <label for="privkey">Private Key</label>
@@ -37,7 +36,6 @@
           </div>
         </form>
         <div class="row mt-3">
-          <div v-if="success2" class="alert alert-success col-12">{{successMsg2}}</div>
           <div v-if="error2" class="alert alert-danger col-12">{{errorMsg2}}</div>
         </div>
         <div v-if="showKeys2">
@@ -57,7 +55,7 @@ import Config from "@/config.js";
 import Utils from "@/utils.js";
 
 export default {
-  name: "GenKey",
+  name: 'GenKey',
   
   data() {
     return {
@@ -143,8 +141,7 @@ export default {
       this.error2 = false
       this.errorMsg2 = ''
       this.showKeys2 = true
-    },
-    
+    }    
   }
 };
 </script>
@@ -152,7 +149,8 @@ export default {
 <style scoped>
 
 .monospace{
-  font-family: monospace;    
+  font-family: monospace;
+  font-size: 1.1rem;  
 }
 
 </style>

@@ -62,10 +62,6 @@ export default {
     this.debounced_validateTrx = debounce(this.validateTrx, 300);    
   },
   
-  mounted() {
-    this.startEventListenerFile();
-  },
-  
   watch: {
     inputTrx: function() {
       this.debounced_validateTrx();
