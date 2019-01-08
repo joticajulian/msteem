@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">    
+    <div class="container">
       <form>
         <h1>Sign transaction</h1>
         <h3>Paste your operation or transaction here</h3>
