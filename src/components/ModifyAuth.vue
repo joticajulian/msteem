@@ -117,7 +117,7 @@ import Config from '@/config.js'
 import Utils from '@/utils.js'
 
 export default {
-  name: "Multisignature",
+  name: "ModifyAuth",
 
   data () {
     return {
