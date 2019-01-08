@@ -94,7 +94,7 @@
           </div>
           <div class="row mt-2 mb-5">
             <button class="btn btn-success btn-lg" @click="signTrx">Sign Transaction</button>
-          </div>        
+          </div>
         </div>
       </div>        
     </div>
