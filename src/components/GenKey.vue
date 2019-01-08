@@ -14,7 +14,7 @@
           <div class="form-group row">
             <label for="password" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-10">
-              <input type="password" class="form-control" id="password" placeholder="Password" v-model="password">
+              <input type="text" class="form-control" id="password" placeholder="Password" v-model="password">
             </div>
           </div>
         </form>
@@ -64,12 +64,12 @@ export default {
       username: '',
       password: '',
       privkey: '',
-      keys1 = {
+      keys1: {
         owner: { public: '', private: '' },
         active: { public: '', private: '' },
         posting: { public: '', private: '' }
       },
-      keys2 = { public: '', private: '' },
+      keys2: { public: '', private: '' },
       error1: false,
       errorMsg1: '',
       error2: false,
@@ -86,18 +86,19 @@ export default {
   
   watch: {
     password: function() {
-      this.debounced_genFromPassword();
-      this.debounced_genFromPrivKey();
+      this.debounced_genFromPassword()
+    },
+    privkey: function() {    
+      this.debounced_genFromPrivKey()
     }    
   },
   methods: {
     genFromPassword () {
       try {
-        var roles = ['owner','active','posting']
-        for(var role in keys1) {
+        for(var role in this.keys1) {
           var p = PrivateKey.fromLogin(this.username, this.password, role)
-          keys1[role].private = p.toString()
-          keys1[role].public = p.createPublic(Config.STEEM_ADDRESS_PREFIX).toString()
+          this.keys1[role].private = p.toString()
+          this.keys1[role].public = p.createPublic(Config.STEEM_ADDRESS_PREFIX).toString()
         }          
         this.hideError1()
       } catch (error) {
@@ -110,15 +111,15 @@ export default {
     genFromPrivKey () {        
       try {
         var p = PrivateKey.fromString(this.privkey);
-        keys2.private = p.toString()
-        keys2.public = p.createPublic(Config.STEEM_ADDRESS_PREFIX).toString()
+        this.keys2.private = p.toString()
+        this.keys2.public = p.createPublic(Config.STEEM_ADDRESS_PREFIX).toString()
         this.hideError2()
       } catch (error) {
         this.showError2('Incorrect private key: '+error.message)
         console.log(error)
         return
       } 
-    }
+    },
     
     showError1 (msg) {
       this.error1 = true
