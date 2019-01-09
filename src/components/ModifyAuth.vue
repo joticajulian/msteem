@@ -25,8 +25,8 @@
         <h3 class="row">@{{username}} authorities</h3>
         <div v-for="roleForm in rolesForm">
           <h3 class="row mt-5 pl-3 bg-dark text-white">{{roleForm.role}}</h3>
-          <div class="row">
-            <table class="table">
+          <div class="row table-responsive">
+            <table class="table col-sm-12">
               <thead v-if="accountMod[roleForm.role].key_auths.length>0">
                 <tr>
                   <th scope="col">#</th>
@@ -38,7 +38,7 @@
               <tbody>
                 <tr v-for="(value, index) in accountMod[roleForm.role].key_auths">
                   <th scope="row" :class="{modified: value[2]==='modified', removed: value[2]==='removed'}">{{index+1}}</th>
-                  <td :class="{modified: value[2]==='modified', removed: value[2]==='removed'}">{{value[0]}}</td>
+                  <td :class="{modified: value[2]==='modified', removed: value[2]==='removed'}" class="publickey">{{value[0]}}</td>
                   <td :class="{modified: value[2]==='modified', removed: value[2]==='removed'}">{{value[1]}}</td>
                   <td><button class="btn btn-secondary" @click="removeKey(roleForm.role, 'key_auths', index)">{{value[3]}}</button></td>
                 </tr>
@@ -212,7 +212,7 @@ export default {
       var id = this.idRole(role)
       var key = this.rolesForm[id].input.key
       var weight = this.rolesForm[id].input.weight
-      this.accountMod[role][type_auth].push([key, weight, 'modified', 'X'])      
+      this.accountMod[role][type_auth].push([key, Number(weight), 'modified', 'X'])      
       this.rolesForm[id].input.key = ''
       this.rolesForm[id].input.weight = 1
     },
@@ -349,6 +349,10 @@ export default {
 #trx{
   font-family: monospace;
   font-size: 0.8rem;
+}
+
+.publickey{    
+  font-family: monospace;
 }
 
 .modified{

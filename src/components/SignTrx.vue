@@ -124,6 +124,20 @@ export default {
         return
       }
       
+      /*
+      let self = this
+      const rv = client.database.verifyAuthority(sgnTrx)
+      .then(function(response){
+        console.log(response)
+        console.log('privkey used: '+privKey.toString())
+      }).catch(function(error){          
+        console.log(error)
+        self.showError('Error verifying signature: '+error.message)
+        console.log('privkey used: '+privKey.toString()) 
+      })
+      */
+       
+      
       this.inputTrx = JSON.stringify(sgnTrx,null,2)
       this.showSuccess('The signature has been added')
     },
