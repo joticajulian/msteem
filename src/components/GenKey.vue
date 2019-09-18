@@ -65,7 +65,8 @@ export default {
       keys1: {
         owner: { public: '', private: '' },
         active: { public: '', private: '' },
-        posting: { public: '', private: '' }
+        posting: { public: '', private: '' },
+        memo: { public: '', private: '' }
       },
       keys2: { public: '', private: '' },
       error1: false,
