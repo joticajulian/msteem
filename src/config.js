@@ -1,4 +1,4 @@
-const RPC_NODE = { url: 'https://api.steemit.com' }
+const RPC_NODE = { url: 'https://api.hive.blog' }
 const APP_VERSION = 'multisignature/0.0.1'
 const URL_SIGN = './#/sign'
 
